@@ -603,8 +603,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1603261654}
-        m_TargetAssemblyTypeName: MainMenuStart, Assembly-CSharp
+      - m_Target: {fileID: 825235765}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:

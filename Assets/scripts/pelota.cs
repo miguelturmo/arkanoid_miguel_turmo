@@ -7,8 +7,8 @@ public class pelota : MonoBehaviour
    public Rigidbody2D rigidballbody2D;
    public float speed = 250;
    private Vector2 velocity;
-    private float speedmultiplier = 1.05f;
-    Vector2 startPosition;
+   public Vector2 speedIncrement = new Vector2(0.5f, 0.5f);
+   Vector2 startPosition;
     // Update is called once per frame
  
         
@@ -22,7 +22,7 @@ public class pelota : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        speed *= speedmultiplier;
+        IncreaseSpeed();
         if (collision.gameObject.CompareTag("Death"))
         {
             FindAnyObjectByType<GameManager>().loselive();
@@ -39,4 +39,13 @@ public class pelota : MonoBehaviour
         rigidballbody2D.AddForce(velocity * speed);
     }
     
+    private void IncreaseSpeed()
+    {
+        Vector2 currentVelocity = rigidballbody2D.velocity;
+
+        Vector2 newVelocity = new Vector2(
+            currentVelocity.x + (currentVelocity.x > 0 ? speedIncrement.x : -speedIncrement.x),
+            currentVelocity.y + (currentVelocity.y > 0 ? speedIncrement.y : -speedIncrement.y));
+        rigidballbody2D.velocity = newVelocity;
+    }
 }
